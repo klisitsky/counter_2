@@ -11,6 +11,7 @@ type IndicatorPropsType = {
   isEndOfCount: boolean
   newValuesForCounter: boolean
   isCorrectRange: boolean
+  setIsActiveSetMenu: () => void
 }
 
 export const Indicator: React.FC<IndicatorPropsType> = (props) => {
@@ -28,6 +29,7 @@ export const Indicator: React.FC<IndicatorPropsType> = (props) => {
             callbackResetValue={props.callbackResetValue}
             isEndOfCount={props.isEndOfCount}
             newValuesForCounter={props.newValuesForCounter}
+            setIsActiveSetMenu={props.setIsActiveSetMenu}
       />
 
     </div>

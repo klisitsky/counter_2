@@ -11,11 +11,15 @@ type SetterPropsType = {
   setInputMax: (value: number) => void
   isCorrectRange: boolean
   setNewInputValues: () => void
+  setIsActiveSetMenu: () => void
 }
 
 export const Setter: React.FC<SetterPropsType> = (props) => {
 
-
+  const callbackOnclickHandler = () => {
+    props.setNewInputValues()
+    props.setIsActiveSetMenu()
+  }
 
   return (<div  className={s.wrapper}>
     <InputRange labelName='Min Value'
@@ -32,7 +36,7 @@ export const Setter: React.FC<SetterPropsType> = (props) => {
     />
     <ButtonMenu name={'Set'}
                 isDisabled={!props.isCorrectRange}
-                callbackOnclick={props.setNewInputValues}
+                callbackOnclick={callbackOnclickHandler}
     />
     </div>);
 };

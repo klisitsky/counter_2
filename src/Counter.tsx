@@ -13,6 +13,8 @@ export const Counter = () => {
 
   const [number, setNumber] = useState<number>(minValueNum)
 
+  const [isActiveSetMenu, setIsActiveSetMenu] = useState<boolean>(false)
+
   const isCorrectRange = inputMin >= inputMax
     ? false
     : !(inputMin < 0 || inputMax < 0)
@@ -33,22 +35,31 @@ export const Counter = () => {
 
   const newValuesForCounter = inputMin !== minValueNum || inputMax !== maxValueNum
 
+  const setIsActiveSetMenuCallback = () => setIsActiveSetMenu(!isActiveSetMenu)
+
   return (
     <div className="Indicator">
-      <Setter inputMin={inputMin}
-              setInputMin={setInputMin}
-              inputMax={inputMax}
-              setInputMax={setInputMax}
-              isCorrectRange={isCorrectRange}
-              setNewInputValues={setNewInputValues}
-      />
-      <Indicator number={number}
-                 maxValueNum={maxValueNum}
-                 callbackAddValue={addValue}
-                 callbackResetValue={resetValue}
-                 isEndOfCount={isEndOfCount}
-                 newValuesForCounter={newValuesForCounter}
-                 isCorrectRange={isCorrectRange}/>
+      {isActiveSetMenu
+        ? <Setter inputMin={inputMin}
+                  setInputMin={setInputMin}
+                  inputMax={inputMax}
+                  setInputMax={setInputMax}
+                  isCorrectRange={isCorrectRange}
+                  setNewInputValues={setNewInputValues}
+                  setIsActiveSetMenu={setIsActiveSetMenuCallback}
+        />
+        : <Indicator number={number}
+                     maxValueNum={maxValueNum}
+                     callbackAddValue={addValue}
+                     callbackResetValue={resetValue}
+                     isEndOfCount={isEndOfCount}
+                     newValuesForCounter={newValuesForCounter}
+                     isCorrectRange={isCorrectRange}
+                     setIsActiveSetMenu={setIsActiveSetMenuCallback}
+        />
+      }
+
+
     </div>
   );
 };

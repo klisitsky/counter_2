@@ -8,12 +8,14 @@ type MenuPropsType = {
   callbackResetValue: () => void
   isEndOfCount: boolean
   newValuesForCounter: boolean
+  setIsActiveSetMenu: () => void
 }
 
 export const Menu: React.FC<MenuPropsType> = (props) => {
 
   const isDisabledInc = !props.isEndOfCount || props.newValuesForCounter
   const isDisabledRes = props.isEndOfCount || props.newValuesForCounter
+
 
   return (<div className={s.menu}>
     <ButtonMenu name={"Inc"}
@@ -24,5 +26,8 @@ export const Menu: React.FC<MenuPropsType> = (props) => {
                 callbackOnclick={props.callbackResetValue}
                 isDisabled={isDisabledRes}
                />
+    <ButtonMenu name={"Set"}
+                callbackOnclick={props.setIsActiveSetMenu}
+    />
     </div>);
 };
